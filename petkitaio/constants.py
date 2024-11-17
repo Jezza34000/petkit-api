@@ -298,7 +298,7 @@ SERVER_ERROR_CODES = {
 
 BLE_HEADER = [-6, -4, -3]
 FEEDER_LIST = ['D3', 'D4', 'D4s', 'D4sh', 'Feeder', 'FeederMini']
-LITTER_LIST = ['T3', 'T4']
+LITTER_LIST = ['T3', 'T4', 'T6']
 PURIFIER_LIST = ['K2']
 WATER_FOUNTAIN_LIST = ['W5']
 
