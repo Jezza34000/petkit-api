@@ -935,7 +935,13 @@ class PetKitClient:
         else:
             # Pause command sent depends on initial mode
             if command == FountainCommand.PAUSE:
-                if water_fountain.data['powerStatus'] == 0:
+
+                if water_fountain.type == 'w5':
+                    pow_status = water_fountain.data['powerStatus']
+                elif water_fountain.type == 'ctw3':
+                    pow_status = water_fountain.data['status']['powerStatus']
+
+                if pow_status == 0:
                     raise PetKitError(f'{water_fountain.data["name"]} is already paused.')
                 else:
                     if water_fountain.data['mode'] == 1:
