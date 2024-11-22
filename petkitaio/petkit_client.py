@@ -262,7 +262,10 @@ class PetKitClient:
 
                     # Litter Boxes
                     if device['type'] in LITTER_LIST:
-                        litter_box_instance, litter_box_id = await self._handle_litter_box(device=device, header=header)
+                        if device['type'] == 'T6':
+                            litter_box_instance, litter_box_id = await self._handle_litter_box_smart(device=device, header=header)
+                        else:
+                            litter_box_instance, litter_box_id = await self._handle_litter_box(device=device, header=header)
                         litter_boxes_data[litter_box_id] = litter_box_instance
 
                     # Purifiers
@@ -622,6 +625,99 @@ class PetKitClient:
             manual_pause_end=manual_pause_end,
         )
         return litter_box_instance, device_detail['result']['id']
+
+    async def _handle_litter_box_smart(self, device: dict[str, Any], header: dict[str, str]) -> (LitterBox, int):
+        """Handle parsing litter box data."""
+
+        ### Fetch device_detail page
+        device_type_lower = device["type"].lower()
+        dd_url = f'{self.base_url}{device_type_lower}/{Endpoint.DEVICE_DETAIL}'
+        dd_data = {
+            'id': device['id']
+        }
+        LOGGER.debug(
+            f'Fetching litter box({device["id"]}) device details page at {dd_url}'
+        )
+        device_detail = await self._post(dd_url, header, dd_data)
+        LOGGER.debug(
+            f'Litter box data response:\n'
+            f'{json.dumps(device_detail, indent=4)}'
+        )
+
+        ### Fetch DeviceRecord page
+        dr_url = f'{self.base_url}{device_type_lower}/{Endpoint.DEVICE_RECORD_RELEASE}'
+        dr_data = {
+            'deviceId': device['id'],
+            'timestamp': int(datetime.now().timestamp()),
+            'type': 2
+        }
+        LOGGER.debug(
+            f'Fetching litter box({device["id"]}) device record page at {dr_url}'
+        )
+        device_record = await self._post(dr_url, header, dr_data)
+        LOGGER.debug(
+            f'Litter box record response:\n'
+            f'{json.dumps(device_record, indent=4)}'
+        )
+
+        ### Fetch statistic page
+        stat_url = f'{self.base_url}{device_type_lower}/{Endpoint.STATISTIC_RELEASE}'
+        stat_data = {
+            'deviceId': device['id'],
+            'timestamp': int(datetime.now().timestamp()),
+        }
+        LOGGER.debug(
+            f'Fetching litter box({device["id"]}) statistics page at {stat_url}'
+        )
+        device_stats = await self._post(stat_url, header, stat_data)
+        LOGGER.debug(
+            f'Litter box statistics response:\n'
+            f'{json.dumps(device_stats, indent=4)}'
+        )
+
+        if device_detail['result']['id'] in self.manually_paused:
+            # Check to see if manual pause is currently True
+            if self.manually_paused[device_detail['result']['id']]:
+                await self.check_manual_pause_expiration(device_detail['result']['id'])
+                manually_paused = self.manually_paused[device_detail['result']['id']]
+                LOGGER.debug(
+                    f'Litter box({device["id"]}) manual pause state: {manually_paused}'
+                )
+            else:
+                manually_paused = False
+                LOGGER.debug(
+                    f'Litter box({device["id"]}) manual pause state: {manually_paused}'
+                )
+        else:
+            # Set to False on initial run
+            manually_paused = False
+            LOGGER.debug(
+                f'Litter box({device["id"]}) manual pause state: {manually_paused}'
+            )
+
+        if device_detail['result']['id'] in self.manual_pause_end:
+            manual_pause_end = self.manual_pause_end[device_detail['result']['id']]
+            LOGGER.debug(
+                f'Litter box({device["id"]}) manual pause end: {manual_pause_end}'
+            )
+        else:
+            # Set to None on initial run
+            manual_pause_end = None
+            LOGGER.debug(
+                f'Litter box({device["id"]}) manual pause end: {manual_pause_end}'
+            )
+        ### Create LitterBox Object
+        litter_box_instance = LitterBox(
+            id=device_detail['result']['id'],
+            device_detail=device_detail['result'],
+            device_record=device_record['result'],
+            statistics=device_stats['result'],
+            type=device_type_lower,
+            manually_paused=manually_paused,
+            manual_pause_end=manual_pause_end,
+        )
+        return litter_box_instance, device_detail['result']['id']
+
 
     async def _handle_purifier(self, device: dict[str, Any], header: dict[str, str]) -> (Purifier, int):
         """Handle parsing purifier data."""
