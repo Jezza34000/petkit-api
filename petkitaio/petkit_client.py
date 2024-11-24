@@ -13,7 +13,6 @@ from itertools import chain
 from typing import Any
 
 from aiohttp import ClientResponse, ClientSession
-from tzlocal import get_localzone_name
 
 from petkitaio.constants import (
     AUTH_ERROR_CODES,
@@ -60,12 +59,11 @@ from petkitaio.exceptions import (
     PetKitError,
     RegionError,
     ServerError,
-    TimezoneError,
+    TimezoneError, TzError,
 )
 from petkitaio.model import Feeder, Fountain, LitterBox, Pet, PetKitData, Purifier
 
 LOGGER = logging.getLogger(__name__)
-
 
 class PetKitClient:
     """PetKit client."""
@@ -74,9 +72,9 @@ class PetKitClient:
         self,
         username: str,
         password: str,
+        region: str,
+        timezone: str,
         session: ClientSession | None = None,
-        region: str = None,
-        timezone: str = None,
         timeout: int = TIMEOUT,
     ) -> None:
         """Initialize PetKit Client.
@@ -85,11 +83,6 @@ class PetKitClient:
         password: PetKit account password
         session: aiohttp.ClientSession or None to create a new session
         """
-        # Catch if a user failed to define a region
-        if region is None:
-            raise RegionError(
-                "A region must be specified in order to log into your PetKit account.",
-            )
 
         self.username: str = username
         self.password: str = password
@@ -97,7 +90,7 @@ class PetKitClient:
         self.base_url: str = ""
         self.servers_dict: dict = {}
         self._session: ClientSession = session if session else ClientSession()
-        self.tz: str = get_localzone_name() if timezone is None else timezone
+        self.tz: str = timezone
         self.timeout: int = timeout
         self.token: str | None = None
         self.token_expiration: datetime | None = None
@@ -108,6 +101,7 @@ class PetKitClient:
         self.last_manual_feed_id: dict[int, str | None] = {}
         self.last_ble_poll: dict[int, datetime | None] = {}
         self.group_ids: set[int] = set()
+
 
     async def get_api_server_list(self) -> None:
         """Fetches a list of all api urls categorized by region."""
