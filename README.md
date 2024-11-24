@@ -12,13 +12,13 @@ This is PetKit's undocumented API. With that said, future changes made by PetKit
 - [D4 (Fresh Element Solo)](https://www.amazon.com/PETKIT-Automatic-Dispenser-Compatible-Freeze-Dried/dp/B09158J9PF/)
 - [D4s (Fresh Element Gemini)](https://www.amazon.com/PETKIT-Automatic-Combination-Dispenser-Stainless/dp/B0BF56RTQH)
 - [Mini Feeder](https://www.amazon.com/PETKIT-Automatic-Stainless-Indicator-Dispenser-2-8L/dp/B08GS1CPHH/)
-- [D4sh (YumShare Dual-Hopper)]()
+- [D4sh (YumShare Dual-Hopper)]() **Video is not supported**
 
 `Litter Boxes`
 - [T3 (Pura X)](https://www.amazon.com/PETKIT-Self-Cleaning-Scooping-Automatic-Multiple/dp/B08T9CCP1M)
 - [T4 (Pura MAX) with/without Pura Air](https://www.amazon.com/PETKIT-Self-Cleaning-Capacity-Multiple-Automatic/dp/B09KC7Q4YF)
 - [T4 (Pura MAX 2) with/without Pura Air]()
-- [T6 (Purobot Ultra)]() partially supported, work in progress
+- [T6 (Purobot Ultra)]() partially supported, work in progress **Video is not supported**
 
 `Purifiers`
 - [K2 (Air Magicube)](https://www.instachew.com/product-page/petkit-air-magicube-smart-odor-eliminator)
