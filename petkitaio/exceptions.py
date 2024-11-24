@@ -18,12 +18,14 @@ class AuthError(Exception):
         """Initialize the exception."""
         Exception.__init__(self, *args)
 
+
 class BluetoothError(Exception):
     """Bluetooth issue from PetKit api."""
 
     def __init__(self, *args: Any) -> None:
         """Initialize the exception."""
         Exception.__init__(self, *args)
+
 
 class ServerError(Exception):
     """PetKit server error."""
