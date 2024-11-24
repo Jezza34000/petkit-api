@@ -1,20 +1,22 @@
-""" Data classes for PetKit API """
+"""Data classes for PetKit API"""
+
 from __future__ import annotations
 
-from dataclasses import dataclass
 import datetime
-from typing import Any, Optional
+from dataclasses import dataclass
+from typing import Any
+
 
 @dataclass
 class PetKitData:
     """Dataclass for all PetKit Data."""
 
     user_id: str
-    feeders: Optional[dict[int, Any]] = None
-    litter_boxes: Optional[dict[int, Any]] = None
-    water_fountains: Optional[dict[int, Fountain]] = None
-    pets: Optional[dict[int, Pet]] = None
-    purifiers: Optional[dict[int, Purifier]] = None
+    feeders: dict[int, Any] | None = None
+    litter_boxes: dict[int, Any] | None = None
+    water_fountains: dict[int, Fountain] | None = None
+    pets: dict[int, Pet] | None = None
+    purifiers: dict[int, Purifier] | None = None
 
 
 @dataclass
@@ -24,8 +26,8 @@ class Feeder:
     id: int
     data: dict[str, Any]
     type: str
-    sound_list: Optional[dict[int, str]] = None
-    last_manual_feed_id: Optional[str] = None
+    sound_list: dict[int, str] | None = None
+    last_manual_feed_id: str | None = None
 
 
 @dataclass
@@ -38,7 +40,7 @@ class LitterBox:
     statistics: dict[str, Any]
     type: str
     manually_paused: bool
-    manual_pause_end: Optional[datetime] = None
+    manual_pause_end: datetime | None = None
 
 
 @dataclass
@@ -58,7 +60,7 @@ class Fountain:
     data: dict[str, Any]
     type: str
     group_relay: bool
-    ble_relay: Optional[int] = None
+    ble_relay: int | None = None
 
 
 @dataclass
