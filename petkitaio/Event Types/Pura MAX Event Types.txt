@@ -190,5 +190,3 @@ Result 6: {
 Result 7: {
     Failing to turn on the light. Low battery capacity of odor removal device.
 }
-
-
