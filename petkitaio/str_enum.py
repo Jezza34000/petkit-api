@@ -1,4 +1,5 @@
 """Enum backports from standard lib."""
+
 from __future__ import annotations
 
 from enum import Enum
@@ -11,7 +12,10 @@ class StrEnum(str, Enum):
     """Partial backport of Python 3.11's StrEnum."""
 
     def __new__(
-        cls: type[_StrEnumSelfT], value: str, *args: Any, **kwargs: Any
+        cls: type[_StrEnumSelfT],
+        value: str,
+        *args: Any,
+        **kwargs: Any,
     ) -> _StrEnumSelfT:
         """Create a new StrEnum instance."""
         if not isinstance(value, str):
