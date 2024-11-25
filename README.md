@@ -1,4 +1,4 @@
-# PetKitAIO
+# Petkit_api
 
 Asynchronous Python library for PetKit's API.
 

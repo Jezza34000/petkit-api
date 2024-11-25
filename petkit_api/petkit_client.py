@@ -14,7 +14,7 @@ from typing import Any
 
 from aiohttp import ClientResponse, ClientSession
 
-from petkitaio.constants import (
+from petkit_api.constants import (
     AUTH_ERROR_CODES,
     BLE_CONNECT_ATTEMPT,
     BLE_HEADER,

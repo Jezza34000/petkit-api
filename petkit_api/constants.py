@@ -1,4 +1,4 @@
-"""Constants for PetKitAIO"""
+"""Constants for petkit_api"""
 
 from .str_enum import StrEnum
 
