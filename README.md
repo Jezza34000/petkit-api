@@ -306,7 +306,7 @@ ___
 
 ```python
 import asyncio
-from petkitaio import PetKitClient
+from petkit_api import PetKitClient
 from aiohttp import ClientSession
 
 async def main():
@@ -349,7 +349,7 @@ await client.manual_feeding(feeder=devices.feeders[feederid], amount=10)
 ```python
 # See constants.py FeederSetting class for available settings
 # Additional import needed:
-from petkitaio.constants import FeederSetting
+from petkit_api.constants import FeederSetting
 
 
 # Enabling child lock on a D4 feeder. Note: Mini Feeders use a different setting.
@@ -369,7 +369,7 @@ await client.reset_feeder_desiccant(feeder=devices.feeders[feederid])
 # A valid relay (set up through the PetKit app) is required in order to send commands to the Eversweet 3 Pro
 # See constants.py W5Command class for available commands
 # Additional import needed:
-from petkitaio.constants import FountainCommand
+from petkit_api.constants import FountainCommand
 
 # Set Water Fountain to Smart Mode. Reusing retrieved devices from above.
 await client.control_water_fountain(water_fountain=devices.water_fountains[water_fountain_id],
