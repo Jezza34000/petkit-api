@@ -53,7 +53,7 @@ from petkit_api.constants import (
     PurifierSetting,
     Region,
 )
-from petkitaio.exceptions import (
+from petkit_api.exceptions import (
     AuthError,
     BluetoothError,
     PetKitError,
@@ -61,7 +61,7 @@ from petkitaio.exceptions import (
     ServerError,
     TimezoneError, TzError,
 )
-from petkitaio.model import Feeder, Fountain, LitterBox, Pet, PetKitData, Purifier
+from petkit_api.model import Feeder, Fountain, LitterBox, Pet, PetKitData, Purifier
 
 LOGGER = logging.getLogger(__name__)
 
