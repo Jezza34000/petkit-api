@@ -59,7 +59,7 @@ from petkit_api.exceptions import (
     PetKitError,
     RegionError,
     ServerError,
-    TimezoneError, TzError,
+    TimezoneError,
 )
 from petkit_api.model import Feeder, Fountain, LitterBox, Pet, PetKitData, Purifier
 
@@ -1290,7 +1290,7 @@ class PetKitClient:
                     # This workState is equivalent to a paused manual cleaning
                     if (state["workMode"] == 0) and (
                         state["workProcess"] == 20
-                    ):  # noqa: PLR2004
+                    ):
                         command = LitterBoxCommand.RESUME_CLEAN
                         self.manually_paused[litter_box.id] = False
                         self.manual_pause_end[litter_box.id] = None
