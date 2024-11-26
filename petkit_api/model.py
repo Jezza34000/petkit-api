@@ -25,6 +25,7 @@ class Feeder:
 
     id: int
     data: dict[str, Any]
+    device_record: dict[str, Any]
     type: str
     sound_list: dict[int, str] | None = None
     last_manual_feed_id: str | None = None

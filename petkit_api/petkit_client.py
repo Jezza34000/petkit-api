@@ -572,9 +572,27 @@ class PetKitClient:
             for sound in result:
                 sound_list[sound["id"]] = sound["name"]
 
+        # Get Record if Smart Feeder (with Camera)
+        if device["type"] == "D4sh":
+            record_url = f"{self.base_url}{device_type_lower}/{Endpoint.DEVICE_RECORD}"
+            record_data = {
+                "days": str(datetime.now().date()).replace("-", ""),
+                "deviceId": device["id"],
+            }
+            LOGGER.debug(
+                f'Fetching feeder({device["id"]}) device record page at {record_url}',
+            )
+            feeder_record = await self._post(record_url, header, record_data)
+            LOGGER.debug(
+                f"Feeder record response:\n{json.dumps(feeder_record, indent=4)}",
+            )
+        else:
+            feeder_record = {"result": {}}
+
         feeder_instance = Feeder(
             id=feeder_data["result"]["id"],
             data=feeder_data["result"],
+            device_record=feeder_record["result"],
             type=device_type_lower,
             sound_list=sound_list,
             last_manual_feed_id=last_manual_feed_id,
