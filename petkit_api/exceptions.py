@@ -10,12 +10,14 @@ class PetKitError(Exception):
         """Initialize the exception."""
         Exception.__init__(self, *args)
 
+
 class TzError(Exception):
     """Error when there is an issue with timezone operations."""
 
     def __init__(self, *args: Any) -> None:
         """Initialize the exception."""
         Exception.__init__(self, *args)
+
 
 class AuthError(Exception):
     """Authentication issue from PetKit api."""

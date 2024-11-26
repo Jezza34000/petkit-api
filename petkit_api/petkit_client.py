@@ -65,6 +65,7 @@ from petkit_api.model import Feeder, Fountain, LitterBox, Pet, PetKitData, Purif
 
 LOGGER = logging.getLogger(__name__)
 
+
 class PetKitClient:
     """PetKit client."""
 
@@ -101,7 +102,6 @@ class PetKitClient:
         self.last_manual_feed_id: dict[int, str | None] = {}
         self.last_ble_poll: dict[int, datetime | None] = {}
         self.group_ids: set[int] = set()
-
 
     async def get_api_server_list(self) -> None:
         """Fetches a list of all api urls categorized by region."""
@@ -1288,9 +1288,7 @@ class PetKitClient:
                 if "workState" in litter_box.device_detail["state"]:
                     state = litter_box.device_detail["state"]["workState"]
                     # This workState is equivalent to a paused manual cleaning
-                    if (state["workMode"] == 0) and (
-                        state["workProcess"] == 20
-                    ):
+                    if (state["workMode"] == 0) and (state["workProcess"] == 20):
                         command = LitterBoxCommand.RESUME_CLEAN
                         self.manually_paused[litter_box.id] = False
                         self.manual_pause_end[litter_box.id] = None
