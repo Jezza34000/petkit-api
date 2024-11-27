@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="petkit_api",
-    version="0.1.2",
+    version="0.1.3",
     author="Jezza34000",
     author_email="mail@me.org",
     description="Python library for PetKit's API",
