@@ -57,7 +57,6 @@ from .petkit_client import (
     LOGGER,
     PetKitClient,
 )
-from .str_enum import StrEnum
 
 __all__ = [
     "AuthError",
@@ -100,7 +99,6 @@ __all__ = [
     "RegionError",
     "ServerError",
     "SERVER_ERROR_CODES",
-    "StrEnum",
     "TIMEOUT",
     "TimezoneError",
     "WATER_FOUNTAIN_LIST",

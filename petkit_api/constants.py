@@ -1,6 +1,5 @@
 """Constants for petkit_api"""
-
-from .str_enum import StrEnum
+from enum import StrEnum
 
 
 class Region(StrEnum):
