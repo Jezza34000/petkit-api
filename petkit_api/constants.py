@@ -21,6 +21,7 @@ class Endpoint(StrEnum):
     CONTROL_DEVICE = "controlDevice"
     CONTROL_WF = "ble/controlDevice"
     DEVICE_DETAIL = "device_detail"
+    DEVICE_DATA = "deviceData"
     DEVICE_RECORD = "getDeviceRecord"
     DEVICE_RECORD_RELEASE = "getDeviceRecordRelease"
     DEVICE_ROSTER = "discovery/device_roster_v2"
@@ -46,8 +47,6 @@ class Endpoint(StrEnum):
     UNIT = "app/saveunit"
     UPDATE_SETTING = "updateSettings"
     USER_DETAILS = "user/details2"
-    W5 = "w5/deviceData"
-    CTW3 = "ctw3/deviceData"
 
 
 class FeederSetting(StrEnum):
