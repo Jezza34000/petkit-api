@@ -30,7 +30,7 @@ This is PetKit's undocumented API. With that said, future changes made by PetKit
 - [W5 (Eversweet 5 Mini)](https://www.petkit.nl/products/eversweet-5-mini-binnen-2-weken-geleverd)
 
 
-## Workig on IT :
+## Working on it :
 
 - [CTW3 (Eversweet Max)]() partially supported, work in progress
 - [T6 (Purobot Ultra)]() partially supported, work in progress **Video is not supported**
