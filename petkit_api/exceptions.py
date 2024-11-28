@@ -11,14 +11,6 @@ class PetKitError(Exception):
         Exception.__init__(self, *args)
 
 
-class TzError(Exception):
-    """Error when there is an issue with timezone operations."""
-
-    def __init__(self, *args: Any) -> None:
-        """Initialize the exception."""
-        Exception.__init__(self, *args)
-
-
 class AuthError(Exception):
     """Authentication issue from PetKit api."""
 
@@ -45,14 +37,6 @@ class ServerError(Exception):
 
 class RegionError(Exception):
     """Error when user fails to specify region."""
-
-    def __init__(self, *args: Any) -> None:
-        """Initialize the exception."""
-        Exception.__init__(self, *args)
-
-
-class TimezoneError(Exception):
-    """Error when tzlocal fails to acquire timezone name from OS."""
 
     def __init__(self, *args: Any) -> None:
         """Initialize the exception."""

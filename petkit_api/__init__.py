@@ -43,7 +43,6 @@ from .exceptions import (
     PetKitError,
     RegionError,
     ServerError,
-    TimezoneError,
 )
 from .model import (
     Feeder,

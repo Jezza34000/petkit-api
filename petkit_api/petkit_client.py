@@ -59,7 +59,6 @@ from petkit_api.exceptions import (
     PetKitError,
     RegionError,
     ServerError,
-    TimezoneError,
 )
 from petkit_api.model import Feeder, Fountain, LitterBox, Pet, PetKitData, Purifier
 
@@ -198,10 +197,6 @@ class PetKitClient:
 
     async def create_header(self) -> dict[str, str]:
         """Create header for interaction with devices."""
-        if self.tz is None:
-            raise TimezoneError(
-                "Unable to find the TZ environmental variable on the OS",
-            )
         return {
             "X-Session": self.token,
             "F-Session": self.token,
