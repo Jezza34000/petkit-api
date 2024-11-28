@@ -1466,7 +1466,7 @@ class PetKitClient:
         self,
         pet: Pet,
         setting: PetSetting,
-        value: int | float,
+        value: float,
     ) -> None:
         """Change the setting for a pet."""
         url = f"{self.base_url}{Endpoint.PET_PROPS}"
