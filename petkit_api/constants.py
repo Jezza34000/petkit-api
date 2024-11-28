@@ -1,4 +1,5 @@
 """Constants for petkit_api"""
+
 from enum import StrEnum
 
 
