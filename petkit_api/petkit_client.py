@@ -1526,11 +1526,11 @@ class PetKitClient:
         data = {"deviceId": feeder.id}
         await self._post(url, header, data)
 
-    async def reset_pura_max_deodorizer(self, litter_box: LitterBox) -> None:
+    async def reset_deodorizer(self, litter_box: LitterBox) -> None:
         """Reset the odor eliminator for litterbox Pura Max / Pura Max 2 / Purobot ULTRA"""
         if litter_box.type not in ["t4", "t6"]:
             raise PetKitError(
-                "Invalid litter box type. Only Pura Max litter boxes have N50 odor eliminators.",
+                "Invalid litter box type. Only Pura Max / Purobot Ultra litter boxes have odor eliminators.",
             )
         url = f"{self.base_url}{litter_box.type}/{Endpoint.MAX_ODOR_RESET}"
         header = await self.create_header()
