@@ -40,8 +40,11 @@ class Endpoint(StrEnum):
     MINI_SETTING = "feedermini/update"
     PET_PROPS = "pet/updatepetprops"
     REFRESH_HOME = "discovery/refreshHome"
+    RESTORE_DAILY_FEED = "restoreDailyFeed"
+    REMOVE_DAILY_FEED = "removeDailyFeed"
     REPLENISHED_FOOD = "added"
     SOUND_LIST = "soundList"
+    SAVE_FEED = "saveFeed"
     STATISTIC = "statistic"
     STATISTIC_RELEASE = "statisticRelease"
     UNIT = "app/saveunit"
@@ -306,7 +309,7 @@ SERVER_ERROR_CODES = {
 }
 
 BLE_HEADER = [-6, -4, -3]
-FEEDER_LIST = ["D3", "D4", "D4s", "D4sh", "Feeder", "FeederMini"]
+FEEDER_LIST = ["D3", "D4", "D4s", "D4h", "D4sh", "Feeder", "FeederMini"]
 LITTER_LIST = ["T3", "T4", "T6"]
 PURIFIER_LIST = ["K2"]
 WATER_FOUNTAIN_LIST = ["W5", "Ctw3"]
