@@ -34,7 +34,7 @@ This is PetKit's undocumented API. With that said, future changes made by PetKit
 
 - [CTW3 (Eversweet Max)]() partially supported, work in progress
 - [T6 (Purobot Ultra)]() partially supported, work in progress **Video is not supported**
-
+- [D4H (YumShare Solo)]() **Video is not supported**
 
 ## Important
 
